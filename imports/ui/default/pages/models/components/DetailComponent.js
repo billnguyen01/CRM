@@ -103,7 +103,12 @@ class DetailComponent extends Component {
         for (let idx in model.view.fields) {
             let fields = model.view.fields[idx];
             fieldRender.push(
-                <FieldDetail key={idx} fields={fields} record={record} component={component} helpers={helpers}/>
+                <FieldDetail
+                    key={idx}
+                    fields={fields}
+                    record={record}
+                    component={component}
+                    helpers={helpers}/>
             );
         }
 

@@ -14,13 +14,13 @@ import {
 import {Link} from 'react-router-dom';
 import {vsprintf} from 'sprintf-js';
 import BootstrapPaginator from 'react-bootstrap-pagination';
-
-import {T} from '/imports/common/Translation';
+import {T, t} from '/imports/common/Translation';
 import container from '/imports/common/Container';
 import {Loading} from '../../../components/Loading/Loading';
 import {FieldView, FieldButton, FieldInput} from '../../../components/Fields/Fields';
 import {utilsHelper} from '../../../helpers/utils/utils';
-import {t} from '/imports/common/Translation';
+import {Pane} from '../../../components/Pane/Pane';
+import DetailViewPane from '../templates/DetailViewPane';
 
 /**
  * list for a collection
@@ -32,7 +32,9 @@ class ListContainer extends Component {
         this.state = {
             filters: {},
             sort: {},
-            selected: {}
+            selected: {},
+            isViewReport: false,
+            record: {}
         };
 
         this.onFilter = this.onFilter.bind(this);
@@ -158,7 +160,7 @@ class ListContainer extends Component {
     onClick(record) {
         const recordId = record._id;
         let selected = {...this.state.selected};
-        const {once} = this.props;
+        const {once, onClick} = this.props;
         if (once) {
             selected = {};
         }
@@ -170,7 +172,15 @@ class ListContainer extends Component {
         }
 
         this.setState({selected: selected});
-        this.props.onClick && this.props.onClick(selected);
+
+        if (onClick) {
+            onClick(selected);
+        } else {
+            this.setState({
+                record: record,
+                isViewReport: true
+            });
+        }
     }
 
     renderCol(record) {
@@ -246,6 +256,7 @@ class ListContainer extends Component {
 
     render() {
         const size = this.props.size || '';
+        const {model} = this.props;
 
         return (
             <Row>
@@ -268,6 +279,19 @@ class ListContainer extends Component {
                                         limit={this.props.limit}
                                         containerClass="pagination-sm"/>
                 </Col>
+                {/*Pane detail record*/}
+                {this.state.record._id ?
+                <Pane isOpen={this.state.isViewReport}
+                      onClose={() => this.setState({
+                          isViewReport: false,
+                          record: {}
+                      })}
+                      title={t.__('Detail')}
+                      subtitle={this.state.record.name || ''}>
+                    <DetailViewPane
+                        record={this.state.record}
+                        model={model}/>
+                </Pane> : null}
             </Row>
         );
     }
