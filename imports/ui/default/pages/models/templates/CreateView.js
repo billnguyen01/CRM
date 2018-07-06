@@ -4,12 +4,11 @@ import {
     Col,
     Alert
 } from 'reactstrap';
-
 import container from '/imports/common/Container';
 import {t, T, PT} from '/imports/common/Translation';
 import {Loading} from '../../../components/Loading/Loading';
-import FormView from './FormView';
 import Models from '/imports/collections/Models/Models';
+import FormComponent from '../components/FormComponent';
 
 /**
  * create a record for custom collection
@@ -38,8 +37,11 @@ class CreateView extends Component {
                 <PT title={t.__('Create new') + ' ' + model.model}/>
                 <Row>
                     <Col>
-                        <FormView title={t.__('Create new') + ' ' + model.model}
-                                  slogan="" model={model} record={{}}/>
+                        <FormComponent
+                            title={t.__('Create new') + ' ' + model.model}
+                            model={model}
+                            record={{}}
+                            method="models.insertRecord"/>
                     </Col>
                 </Row>
             </div>

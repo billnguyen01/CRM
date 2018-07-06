@@ -1,25 +1,22 @@
 import SimpleSchema from 'simpl-schema';
 import CollectionAssign from '../../../../common/CollectionAssign';
-import {customerLayouts} from './layouts';
+import {contactLayouts} from './layouts';
 
-class CustomersCollection extends CollectionAssign {
-    /**
-     * get default layouts
-     */
+class ContactsCollection extends CollectionAssign {
     getLayouts() {
-        return customerLayouts;
+        return contactLayouts;
     }
 }
 
-const Customers = new CustomersCollection('customers');
+const Contacts = new ContactsCollection('contacts');
 
-Customers.allow({
+Contacts.allow({
     insert: () => false,
     update: () => false,
     remove: () => false,
 });
 
-Customers.deny({
+Contacts.deny({
     insert: () => true,
     update: () => true,
     remove: () => true,
@@ -37,7 +34,7 @@ Schema.Address = new SimpleSchema({
     country: {type: String}
 });
 
-Schema.Customers = CollectionAssign.schema({
+Schema.Contacts = CollectionAssign.schema({
     createdAt: {
         type: String,
         autoValue() {
@@ -45,13 +42,13 @@ Schema.Customers = CollectionAssign.schema({
             return this.value;
         },
     },
-    avatar: {
+    customer_id: {
         type: String,
         optional: true
     },
-    customerType: {
+    avatar: {
         type: String,
-        defaultValue: 'PERSON'
+        optional: true
     },
     salutation: {
         type: String,
@@ -66,7 +63,6 @@ Schema.Customers = CollectionAssign.schema({
         optional: true
     },
     name: {type: String},
-    legalName: {type: String},
     phone: {type: String},
     email: {type: String},
     dateOfBirth: {
@@ -81,13 +77,8 @@ Schema.Customers = CollectionAssign.schema({
         type: Schema.Address,
         blackbox: true
     },
-    shippingAddress: {
-        type: Array,
-        optional: true
-    },
-    "shippingAddress.$": {type: Schema.Address}
 });
 
-Customers.attachSchema(Schema.Customers);
+Contacts.attachSchema(Schema.Contacts);
 
-export default Customers;
+export default Contacts;

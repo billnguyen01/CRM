@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
+import {Meteor} from 'meteor/meteor';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    Alert
+    Card, CardHeader, CardBody,
+    Row, Col,
+    Alert,
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {vsprintf} from 'sprintf-js';
-
-import {t, T} from '/imports/common/Translation';
+import {t, T, PT} from '/imports/common/Translation';
 import {FieldView} from '../../../components/Fields/Fields';
+import container from '../../../../../common/Container';
 
 /**
  * detail a field
@@ -166,3 +166,51 @@ class DetailComponent extends Component {
 }
 
 export default withRouter(DetailComponent);
+
+/**
+ * DetailViewComponent
+ */
+class DetailViewContainerComponent extends Component {
+    render() {
+        const {record, model, title, className, prefix} = this.props;
+        const recordName = record[model.view.title] || '';
+
+        return (
+            <div className={className + ' animated fadeIn'}>
+                <PT title={title + ': ' + recordName}/>
+
+                <Row>
+                    <Col xs="12" lg="12">
+                        <DetailComponent
+                            title={title}
+                            model={model}
+                            record={record}
+                            editLink={'/manager/' + prefix + '/%s/edit'}/>
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
+}
+
+export const DetailViewComponent = container((props, onData) => {
+    const _id = props._id;
+    const subscribe = props.subscribe;
+    const collection = props.collection;
+    const sub = Meteor.subscribe(subscribe, _id);
+    if (sub.ready()) {
+        onData(null, {
+            record: collection.findOne(_id)
+        });
+    }
+}, DetailViewContainerComponent);
+
+DetailViewComponent.propTypes = {
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    className: PropTypes.string,
+    model: PropTypes.object,
+    collection: PropTypes.object,
+    subscribe: PropTypes.string,
+    prefix: PropTypes.string
+};

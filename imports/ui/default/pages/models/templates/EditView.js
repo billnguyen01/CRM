@@ -9,9 +9,9 @@ import {
 import container from '/imports/common/Container';
 import {t, PT} from '/imports/common/Translation';
 import {Loading} from '../../../components/Loading/Loading';
-import FormView from './FormView';
 import Models from '/imports/collections/Models/Models';
 import {myModel} from '/imports/common/Model';
+import FormComponent from '../components/FormComponent';
 
 /**
  * edit a record for custom collection
@@ -32,8 +32,11 @@ class EditView extends Component {
                 <PT title={t.__('Edit') + ' ' + model.model + ': ' + record[model.view.title]}/>
                 <Row>
                     <Col>
-                        <FormView title={t.__('Edit') + ' ' + model.model}
-                                  slogan={record[model.view.title]} model={model} record={record}/>
+                        <FormComponent
+                            title={t.__('Edit') + ' ' + model.model}
+                            model={model}
+                            record={record}
+                            method="models.updateRecord"/>
                     </Col>
                 </Row>
             </div>

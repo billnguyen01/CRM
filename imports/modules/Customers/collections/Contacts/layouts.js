@@ -1,4 +1,4 @@
-export const customerLayouts = {
+export const contactLayouts = {
     icon: 'icon-people',
     list: {
         title: 'name',
@@ -7,10 +7,6 @@ export const customerLayouts = {
                 type: 'text',
                 label: 'Name'
             },
-            legalName: {
-                type: 'text',
-                label: 'Legal Name'
-            },
             phone: {
                 type: 'text',
                 label: 'Phone'
@@ -18,7 +14,7 @@ export const customerLayouts = {
             email: {
                 type: 'text',
                 label: 'Email'
-            }
+            },
         }
     },
     view: {
@@ -29,20 +25,10 @@ export const customerLayouts = {
                     type: 'image',
                     label: 'Avatar'
                 },
-                customerType: {
-                    type: 'text',
-                    label: 'Customer Type'
-                }
-            },
-            {
                 name: {
                     type: 'text',
                     label: 'Name'
                 },
-                legalName: {
-                    type: 'text',
-                    label: 'Legal Name'
-                }
             },
             {
                 phone: {
@@ -55,20 +41,13 @@ export const customerLayouts = {
                 }
             },
             {
-                billingAddress: {
+                address: {
                     type: 'array',
-                    label: 'Billing Address',
+                    label: 'Address',
                     props: {
                         itemType: 'address'
                     }
                 },
-                shippingAddress: {
-                    type: 'array',
-                    label: 'Shipping Address',
-                    props: {
-                        itemType: 'address'
-                    }
-                }
             }
         ]
     }

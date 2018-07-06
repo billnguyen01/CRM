@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {
-    Row,
-    Col
+    Row, Col,
 } from 'reactstrap';
-
 import {t, PT} from '/imports/common/Translation';
 import FormComponent from '/imports/ui/default/pages/models/components/FormComponent';
 import Models from '../../../../collections/Models/Models';

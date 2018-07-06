@@ -2,11 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
 import {
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody,
+    Row, Col,
+    Card, CardHeader, CardBody,
     Table,
     Alert,
     Input
@@ -14,7 +11,7 @@ import {
 import {Link} from 'react-router-dom';
 import {vsprintf} from 'sprintf-js';
 import BootstrapPaginator from 'react-bootstrap-pagination';
-import {T, t} from '/imports/common/Translation';
+import {T, t, PT} from '/imports/common/Translation';
 import container from '/imports/common/Container';
 import {Loading} from '../../../components/Loading/Loading';
 import {FieldView, FieldButton, FieldInput} from '../../../components/Fields/Fields';

@@ -18,7 +18,7 @@ import {
 import {Link} from 'react-router-dom';
 import {vsprintf} from 'sprintf-js';
 
-import {t, T} from '/imports/common/Translation';
+import {T} from '/imports/common/Translation';
 import {utilsHelper} from '../../../helpers/utils/utils';
 import {FieldInput} from '../../../components/Fields/Fields';
 
