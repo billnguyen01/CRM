@@ -1,5 +1,5 @@
-#Open Source CRM built on <a href="http://avoca.io" target="_blank">Avoca Platform</a>
-Features:
+# Open Source CRM built on <a href="http://avoca.io" target="_blank">Avoca Platform</a>
+### Features:
 * Customers and Contacts
 * Opportunities
 * Tasks
