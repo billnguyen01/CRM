@@ -3,11 +3,22 @@ import {
     Modal, ModalHeader, ModalBody, ModalFooter,
     Button
 } from 'reactstrap';
-
+import PropTypes from 'prop-types';
 import {utilsHelper} from '../utils/utils';
 import {T} from '/imports/common/Translation';
 
 export class ShowModal extends Component {
+    static propTypes = {
+        isOpen: PropTypes.bool,
+        mdIcon: PropTypes.string,
+        mdTitle: PropTypes.string,
+        mdComponent: PropTypes.any,
+        mdToggle: PropTypes.func,
+        mdOk: PropTypes.func,
+        mdCancel: PropTypes.func,
+        onRef: PropTypes.func,
+    };
+
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -32,7 +43,7 @@ export class ShowModal extends Component {
     }
 
     render() {
-        const {isOpen, mdIcon, mdTitle, mdComponent} = this.props;
+        const {isOpen, children, mdIcon, mdTitle, mdComponent} = this.props;
         let props = utilsHelper.objectWithoutProperties(this.props, [
             'isOpen',
             'mdIcon',
@@ -44,8 +55,13 @@ export class ShowModal extends Component {
             'onRef'
         ]);
 
-        props.onRef = ((ref) => {this.child = ref});
-        const ChildComponent = React.createElement(mdComponent, {...props});
+        let ChildComponent;
+        if (children) {
+            ChildComponent = children;
+        } else {
+            props.onRef = ((ref) => {this.child = ref});
+            ChildComponent = React.createElement(mdComponent, {...props});
+        }
 
         return (
             <Modal isOpen={isOpen}
@@ -57,6 +73,7 @@ export class ShowModal extends Component {
                 <ModalBody>
                     {ChildComponent}
                 </ModalBody>
+                {children ? null :
                 <ModalFooter>
                     <Button color="primary"
                             onClick={this.onOk}>
@@ -66,7 +83,7 @@ export class ShowModal extends Component {
                             onClick={this.onCancel}>
                         <T>Cancel</T>
                     </Button>
-                </ModalFooter>
+                </ModalFooter>}
             </Modal>
         );
     }

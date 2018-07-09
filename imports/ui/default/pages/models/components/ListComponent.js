@@ -6,7 +6,8 @@ import {
     Card, CardHeader, CardBody,
     Table,
     Alert,
-    Input
+    Input,
+    Button,
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {vsprintf} from 'sprintf-js';
@@ -16,8 +17,8 @@ import container from '/imports/common/Container';
 import {Loading} from '../../../components/Loading/Loading';
 import {FieldView, FieldButton, FieldInput} from '../../../components/Fields/Fields';
 import {utilsHelper} from '../../../helpers/utils/utils';
-import {Pane} from '../../../components/Pane/Pane';
-import DetailViewPane from '../templates/DetailViewPane';
+import {Pane} from '../../../helpers/tags/Pane';
+import {DetailPaneComponent} from './DetailPaneComponent';
 
 /**
  * list for a collection
@@ -30,7 +31,8 @@ class ListContainer extends Component {
             filters: {},
             sort: {},
             selected: {},
-            isViewReport: false,
+            viewRecord: false,
+            editRecord: false,
             record: {}
         };
 
@@ -175,7 +177,7 @@ class ListContainer extends Component {
         } else {
             this.setState({
                 record: record,
-                isViewReport: true
+                viewRecord: true
             });
         }
     }
@@ -278,16 +280,23 @@ class ListContainer extends Component {
                 </Col>
                 {/*Pane detail record*/}
                 {this.state.record._id ?
-                <Pane isOpen={this.state.isViewReport}
+                <Pane isOpen={this.state.viewRecord}
                       onClose={() => this.setState({
-                          isViewReport: false,
+                          viewRecord: false,
                           record: {}
                       })}
-                      title={t.__('Detail')}
-                      subtitle={this.state.record.name || ''}>
-                    <DetailViewPane
+                      title={this.state.record.name || ''}
+                      subtitle={
+                          <Button color="link"
+                                  onClick={() => this.setState({editRecord: true})}>
+                              <i className="fa fa-edit"/>
+                          </Button>
+                      }>
+                    <DetailPaneComponent
                         record={this.state.record}
-                        model={model}/>
+                        model={model}
+                        isEdit={this.state.editRecord}
+                        closeEdit={() => this.setState({editRecord: false})}/>
                 </Pane> : null}
             </Row>
         );

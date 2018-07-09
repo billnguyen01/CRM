@@ -1,5 +1,7 @@
 export const contactLayouts = {
     icon: 'icon-people',
+    createMethod: 'contacts.insert',
+    updateMethod: 'contacts.update',
     list: {
         title: 'name',
         fields: {

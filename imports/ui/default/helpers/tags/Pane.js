@@ -12,9 +12,14 @@ export class Pane extends Component {
     }
 
     render() {
-        const {isOpen, children,
-            className, overlayClassName,
-            title, subtitle} = this.props;
+        const {
+            isOpen,
+            children,
+            className,
+            overlayClassName,
+            title,
+            subtitle
+        } = this.props;
 
         return (
             <SlidingPane

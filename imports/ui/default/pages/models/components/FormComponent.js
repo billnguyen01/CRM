@@ -36,7 +36,9 @@ class FormComponent extends Component {
         onSubmit: PropTypes.func,
         method: PropTypes.string,
         component: PropTypes.func,
-        helpers: PropTypes.object
+        helpers: PropTypes.object,
+        beforeSubmit: PropTypes.func,
+        afterSubmit: PropTypes.func
     };
 
     constructor(props) {
