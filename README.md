@@ -1,24 +1,43 @@
-# Avoca CRM for data manager in business with Software Service Model
+# Open Source CRM built on <a href="http://avoca.io" target="_blank">Avoca Platform</a>
+### Features:
+* Customers and Contacts
+* Opportunities
+* Tasks
+* Calendar
+* Reports and Dashboard
+* Internal Chat
+* Manage multiple Clients in single source
 
-## Install
+### System Requirements
+Before you begin, make sure you have installed: 
+* <a href="https://nodejs.org/" target="_blank">Node.js and NPM</a>
+* <a href="https://www.meteor.com/install" target="_blank">Meteor</a>
 
-### Require
-* node
-* npm
-* meteor
+### Installation
+```bash
+git clone https://github.com/avoca-platform/CRM.git avoca-crm
+```
+```bash
+cd avoca-crm
+```
+```bash
+meteor npm install
+```
 
-### Build from source
-* git clone https://github.com/avoca-platform/CRM.git AvocaCRM
-* cd AvocaCRM
-* meteor npm install
-* Install redux dev tool: https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
-* If want not to use redux dev tool:
-    * access: imports/ui/default/store/index.js
-    * comment: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+### Install develop tool (optional)
+* Install Redux dev tool: https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+* If not use Redux dev tool:
+    * edit: imports/ui/default/store/index.js
+    * comment this line: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 ### Run
-* meteor
-* And now you can access: http://localhost:3000
+```bash
+cd avoca-crm
+```
+```bash 
+meteor
+```
+* Open web browser and access: <a href="http://localhost:3000/install" target="_blank">http://localhost:3000/install</a>
 * Install and enjoy!
 
 ### Login
