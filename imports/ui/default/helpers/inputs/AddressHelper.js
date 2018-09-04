@@ -161,28 +161,28 @@ export class AddressInput extends Component {
                     <Select2Helper name="city"
                                    value={this.state.address.city}
                                    placeholder={t.__('City')}
-                                   options={["VietName", "HongKong"]}
+                                   options={["VietNam", "HongKong"]}
                                    onChange={this.inputChange}/>
                 </Col>
                 <Col md="6" className="addressRow">
                     <Select2Helper name="district"
                                    value={this.state.address.district}
                                    placeholder={t.__('District')}
-                                   options={["VietName", "HongKong"]}
+                                   options={["VietNam", "HongKong"]}
                                    onChange={this.inputChange}/>
                 </Col>
                 <Col md="6" className="addressRow">
                     <Select2Helper name="ward"
                                    value={this.state.address.ward}
                                    placeholder={t.__('Ward')}
-                                   options={["VietName", "HongKong"]}
+                                   options={["VietNam", "HongKong"]}
                                    onChange={this.inputChange}/>
                 </Col>
                 <Col md="6">
                     <Select2Helper name="country"
                                    value={this.state.address.country}
                                    placeholder={t.__('Country')}
-                                   options={["VietName", "HongKong"]}
+                                   options={["VietNam", "HongKong"]}
                                    onChange={this.inputChange}/>
                 </Col>
             </Row>

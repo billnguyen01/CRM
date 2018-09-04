@@ -1,5 +1,7 @@
 export const customerLayouts = {
     icon: 'icon-people',
+    createMethod: 'customers.insert',
+    updateMethod: 'customers.update',
     list: {
         title: 'name',
         fields: {
@@ -71,5 +73,10 @@ export const customerLayouts = {
                 }
             }
         ]
+    },
+    related: {
+        Contacts: {
+            type: 'one-many'
+        }
     }
 };

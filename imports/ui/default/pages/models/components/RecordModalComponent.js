@@ -6,7 +6,7 @@ import {
 import {ShowModal} from '../../../helpers/tags/Modal';
 import DetailComponent from '../components/DetailComponent';
 import FormComponent from './FormComponent';
-import {T, t} from '/imports/common/Translation';
+import {T} from '/imports/common/Translation';
 
 export class DetailModalComponent extends Component {
     static propTypes = {
@@ -69,11 +69,14 @@ export class FormModalComponent extends Component {
 
     render() {
         const {model, record} = this.props;
+        const titleField = model && model.view && model.view.title;
+        const title = record && record[titleField] || '';
         const method = model && model.updateMethod || '';
 
         return (
             <ShowModal isOpen={this.state.isOpen}
-                       mdTitle={t.__('Modal')}
+                       mdTitle={title}
+                       mdIcon={model && model.icon}
                        mdToggle={() => this.mdToggle()}>
                 <FormComponent
                     onlyForm={true}
